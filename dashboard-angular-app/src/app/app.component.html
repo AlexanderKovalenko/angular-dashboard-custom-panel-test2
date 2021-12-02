@@ -1,22 +1,21 @@
-<div style="display: flex; height: 100%">
+<div style="display: flex; height: 650px">
   <div style="width: 300px;">
-    <dx-data-grid 
-        [dataSource]="store" 
-        [remoteOperations]="true" 
-        [showBorders]="true"
-        [focusedRowEnabled]="true"
-        (onFocusedRowChanged)="onFocusedRowChanged($event)">
-      <dxo-paging [pageSize]="10"></dxo-paging>
-      <dxo-filter-row [visible]="true"></dxo-filter-row>
-      <dxi-column dataField="productID" caption="ID" [width]="55"></dxi-column>
-      <dxi-column dataField="productName" caption="Name"></dxi-column>
-    </dx-data-grid>
+    <dx-list
+        [dataSource]="dataSource" 
+        keyExpr="productID"
+        displayExpr="productName"
+        pageLoadMode="scrollBottom"
+        [searchEnabled]="true"
+        searchExpr="productName"
+        (onItemClick)="onItemClick($event)">
+    </dx-list>
   </div>
   <div style="flex-grow: 1;">
     <dx-dashboard-control
-        style="display: block;width:100%;height:600px;" 
+        style="display: block; width: 100%; height: 100%;" 
         [endpoint]="serverUrl + '/api/dashboard'"
-        [(dashboardId)]="dashboardId">
+        [(dashboardId)]="dashboardId"
+        [loadDefaultDashboard]="false">
     </dx-dashboard-control>
   </div>
 </div>
