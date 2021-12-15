@@ -8,5 +8,12 @@ namespace AspNetCoreDashboardBackend {
         }
 
         public virtual DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder
+                .Entity<Product>()
+                .Property(e => e.ProductID)
+                .HasConversion<string>();
+        }
     }
 }

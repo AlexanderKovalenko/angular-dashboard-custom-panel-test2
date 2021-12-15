@@ -6,6 +6,7 @@ namespace AspNetCoreDashboardBackend {
     public class DefaultDashboardController : DashboardController {
         public DefaultDashboardController(DashboardConfigurator configurator, IDataProtectionProvider dataProtectionProvider = null)
             : base(configurator, dataProtectionProvider) {
+
         }
     }
 }

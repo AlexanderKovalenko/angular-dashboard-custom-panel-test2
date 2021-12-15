@@ -12,7 +12,6 @@ export class AppComponent {
   serverUrl: string = "https://localhost:44396";
   store: CustomStore;
   dataSource: DataSource;
-  dashboardId: string = "";
 
   constructor() {
     this.store = createStore({
@@ -26,8 +25,4 @@ export class AppComponent {
       pageSize: 20
     });
   }
-
-  onItemClick(e: any) {
-    this.dashboardId = e.itemData.productID.toString();
-  }  
 }

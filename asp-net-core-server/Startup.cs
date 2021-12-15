@@ -27,6 +27,12 @@ namespace AspNetCoreDashboardBackend {
         public void ConfigureServices(IServiceCollection services) {
             // Configures services to use the Web Dashboard Control.
             services
+                .AddEntityFrameworkSqlite()
+                .AddDbContext<NorthwindContext>(options => options
+                    .UseSqlite("Data Source=App_Data/nwind.db")
+                );
+
+            services
                 .AddCors(options => {
                     options.AddPolicy("CorsPolicy", builder => {
                         builder.AllowAnyOrigin();
@@ -49,12 +55,6 @@ namespace AspNetCoreDashboardBackend {
                 
                 return configurator;
             });
-
-            services
-              .AddEntityFrameworkSqlite()
-              .AddDbContext<NorthwindContext>(options => options
-                  .UseSqlite("Data Source=App_Data/nwind.db")
-              );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

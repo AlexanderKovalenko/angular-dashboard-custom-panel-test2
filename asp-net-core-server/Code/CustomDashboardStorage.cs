@@ -18,7 +18,7 @@ namespace AspNetCoreDashboardBackend {
         
         public IEnumerable<DashboardInfo> GetAvailableDashboardsInfo() {
             var dashboards = nwindContext.Products.Select(item => new DashboardInfo() { 
-                ID = item.ProductID.ToString(),
+                ID = item.ProductID,
                 Name = item.ProductName
             });
 
@@ -32,7 +32,7 @@ namespace AspNetCoreDashboardBackend {
             var dashboard = new Dashboard();
             dashboard.LoadFromXDocument(XDocument.Parse(content));
 
-            var product = nwindContext.Products.First(product => product.ProductID == Convert.ToInt32(dashboardID));
+            var product = nwindContext.Products.First(product => product.ProductID == dashboardID);
 
             dashboard.Title.Text = product.ProductName;
 
@@ -40,7 +40,7 @@ namespace AspNetCoreDashboardBackend {
         }
 
         public void SaveDashboard(string dashboardID, XDocument dashboard) {
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
