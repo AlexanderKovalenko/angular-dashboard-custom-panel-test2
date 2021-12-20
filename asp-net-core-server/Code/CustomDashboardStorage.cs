@@ -26,14 +26,10 @@ namespace AspNetCoreDashboardBackend {
         }
 
         public XDocument LoadDashboard(string dashboardID) {
-            var path = Path.Combine(dashboardTemplateFolder, "DashboardTemplate.xml");
-            var content = File.ReadAllText(path);
-
             var dashboard = new Dashboard();
-            dashboard.LoadFromXDocument(XDocument.Parse(content));
-
             var product = nwindContext.Products.First(product => product.ProductID == dashboardID);
 
+            dashboard.LoadFromXml(Path.Combine(dashboardTemplateFolder, "DashboardTemplate.xml"));
             dashboard.Title.Text = product.ProductName;
 
             return dashboard.SaveToXDocument();
